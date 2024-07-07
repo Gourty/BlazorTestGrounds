@@ -25,10 +25,11 @@
     private NavigationManager NavigationManager { get; set; } = default!;
 
     private bool ChooseDifficulty = false;
+    private int size = 3;
 
     private void StartGame(GameType type = GameType.Normal, Difficulty difficulty = Difficulty.Normal)
     {
-        NavigationManager.NavigateTo($"{NavigationManager.BaseUri}tictactoe/board/{type}/{difficulty}");
+        NavigationManager.NavigateTo($"{NavigationManager.BaseUri}tictactoe/board/{type}/{difficulty}/{size}");
     }
 
 

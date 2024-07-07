@@ -1,10 +1,10 @@
 ﻿@using BlazorWebAssembly.TicTacToe.Enums
 @using BlazorWebAssembly.TicTacToe.Paritals
-@page "/tictactoe/board/{type}/{difficulty}"
+@page "/tictactoe/board/{type}/{difficulty}/{size}"
 
 <h3>Tic Tak Toe</h3>
 
-<Board GameType="gameType" Difficulty="difficulty" />
+<Board GameType="gameType" Difficulty="difficulty" Size="size" />
 
 
 
@@ -16,8 +16,12 @@
     [Parameter]
     public string Difficulty { get; set; } = string.Empty;
 
+    [Parameter]
+    public string Size { get; set; }
+
     private GameType gameType = GameType.Normal;
     private Difficulty difficulty;
+    private int size;
 
     [Inject]
     private NavigationManager NavigationManager { get; set; } = default!;
@@ -28,5 +32,6 @@
             NavigationManager.NavigateTo($"{NavigationManager.BaseUri}/");
         }
         Enum.TryParse<Difficulty>(Difficulty, out difficulty);
+        size = int.Parse(Size);
     }
 }

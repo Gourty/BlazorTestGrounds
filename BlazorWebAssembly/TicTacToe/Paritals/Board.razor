@@ -11,7 +11,7 @@
 
     @for (int i = 0; i < ticTacToe.BoardSize; i++)
     {
-        <div name="row" class="row">
+        <div name="row" class="row" style="grid-template-columns:repeat(@Size,1fr)">
             @for (int j = 0; j < ticTacToe.BoardSize; j++)
             {
                 int row = i;
@@ -35,16 +35,19 @@
     [Parameter]
     public Difficulty Difficulty { get; set; }
 
+    [Parameter]
+    public int Size { get; set; }
+
+
     [Inject]
     private NavigationManager NavigationManager { get; set; } = default!;
-
 
     private TicTacToeBoard ticTacToe = default!;
     private AI ai = default!;
 
     protected override Task OnInitializedAsync()
     {
-        ticTacToe = new TicTacToeBoard();
+        ticTacToe = new TicTacToeBoard(Size);
         ai = new AI(difficulty: Difficulty);
         return base.OnInitializedAsync();
     }
@@ -56,7 +59,7 @@
 
     void MarkSquare(int row, int col)
     {
-        if (!ticTacToe.IsGameOver && ticTacToe.IsValidTurn(row,col))
+        if (!ticTacToe.IsGameOver && ticTacToe.IsValidTurn(row, col))
         {
             ticTacToe.MarkSquare(row, col);
             TakeNextTurn(row, col);
