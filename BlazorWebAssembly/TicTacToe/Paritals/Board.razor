@@ -56,7 +56,7 @@
 
     void MarkSquare(int row, int col)
     {
-        if (!ticTacToe.IsGameOver)
+        if (!ticTacToe.IsGameOver && ticTacToe.IsValidTurn(row,col))
         {
             ticTacToe.MarkSquare(row, col);
             TakeNextTurn(row, col);

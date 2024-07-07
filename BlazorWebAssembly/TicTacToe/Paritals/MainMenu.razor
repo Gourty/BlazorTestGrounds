@@ -2,21 +2,20 @@
 
 <div name="MainMenu">
     <h1>Main Menu</h1>
-    @if (ChooseDifficulty)
-    {
-        <div>
+    <div class="menu-container">
+        @if (ChooseDifficulty)
+        {
             <button class="menu-button" @onclick="() => ChooseDifficulty = false">Back</button>
-            <button class="menu-button" @onclick="() => StartGame(GameType.AI,Difficulty.Easy) ">Star Game(Easy) </button>
-            <button class="menu-button" @onclick="() => StartGame(GameType.AI,Difficulty.Normal) ">Star Game(Normal)</button>
-            <button class="menu-button" @onclick="() => StartGame(GameType.AI, Difficulty.Hard)">Star Game(Hard)</button>
-
-        </div>
-    }
-    else
-    {
-        <button class="menu-button" @onclick="() => StartGame()">Start Game(2 Players)</button>
-        <button class="menu-button" @onclick="() => ChooseDifficulty = true">Star Game(AI) - WIP </button>
-    }
+            <button class="menu-button" @onclick="() => StartGame(GameType.AI,Difficulty.Easy) ">Start Game(Easy) </button>
+            <button class="menu-button" @onclick="() => StartGame(GameType.AI,Difficulty.Normal) ">Start Game(Normal)</button>
+            <button class="menu-button" @onclick="() => StartGame(GameType.AI, Difficulty.Hard)">Start Game(Hard)</button>
+        }
+        else
+        {
+            <button class="menu-button" @onclick="() => StartGame()">Start Game(2 Players)</button>
+            <button class="menu-button" @onclick="() => ChooseDifficulty = true">Star Game(AI) - WIP </button>
+        }
+    </div>
 </div>
 
 

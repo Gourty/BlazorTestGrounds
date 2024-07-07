@@ -20,12 +20,16 @@ public class TicTacToeBoard
     public Symbol? Winner { get; private set; }
     public bool IsGameOver { get; set; }
 
+    public bool IsValidTurn(int row, int col) =>
+      IsValidId(row) && IsValidId(col) && TicTacToeSquares[row, col].Symbol == null;
+
     public void MarkSquare(int row, int col)
     {
-        if (!IsValidId(row) || !IsValidId(col) || TicTacToeSquares[row, col].Symbol != null)
+        if (!IsValidTurn(row, col))
         {
             return;
         }
+
         TicTacToeSquares[row, col].AssignSymbol(Turn);
         if (CheckWin(row, col, Turn))
         {
@@ -159,4 +163,5 @@ public class TicTacToeBoard
         }
 
     }
+
 }

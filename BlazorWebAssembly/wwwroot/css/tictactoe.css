@@ -1,50 +1,50 @@
 ﻿.board {
-    width: 450px;
-    margin: 50px auto 0;
+    width: 27rem;
+    margin: 3rem auto 0;
 }
 
 .row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin: 16px;
+    gap: 1rem;
+    margin: 1rem;
 }
 
     .row div {
-        width: 125px;
-        height: 125px;
+        width: 9rem;
+        height: 9rem;
         display: flex;
         align-items: center;
         justify-content: center;
         background-color: #3e36ff;
-        font-size: 96px;
+        font-size: 8rem;
         color: #ecf0f1;
-        border: 2px solid #201579;
-        border-radius: 8px;
+        border: 0.2rem solid #201579;
+        border-radius: 0.5rem;
         cursor: pointer;
         transition: background-color 0.3s, color 0.3s;
     }
 
 .menu-container {
-    justify-content:center;
+    justify-content: center;
     display: flex;
-    margin: 16px;
-    padding: 16px;
+    margin: 1rem;
+    padding: 1rem;
 }
 
 .menu-button {
-    width: 150px;
-    height: 75px;
-    margin: 16px;
+    width: 15rem;
+    height: 5rem;
+    margin: 1rem;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #3e36ff;
-    font-size: 16px;
+    font-size: 1rem;
     color: #ecf0f1;
-    border: 2px solid #201579;
-    border-radius: 8px;
+    border: 0.2rem solid #201579;
+    border-radius: 0.5rem;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
 }
