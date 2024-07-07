@@ -1,0 +1,50 @@
+﻿.board {
+    width: 450px;
+    margin: 50px auto 0;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 16px;
+}
+
+    .row div {
+        width: 125px;
+        height: 125px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #3e36ff;
+        font-size: 96px;
+        color: #ecf0f1;
+        border: 2px solid #201579;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+.menu-container {
+    justify-content:center;
+    display: flex;
+    margin: 16px;
+    padding: 16px;
+}
+
+.menu-button {
+    width: 150px;
+    height: 75px;
+    margin: 16px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3e36ff;
+    font-size: 16px;
+    color: #ecf0f1;
+    border: 2px solid #201579;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}

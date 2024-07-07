@@ -1,0 +1,91 @@
+﻿@using BlazorWebAssembly.TicTacToe.Enums
+
+<div name="Board" class="board">
+    <p>Board</p>
+    @if (ticTacToe.Winner != null)
+    {
+        <div name="winner-screen">
+            <h1>The Winner is @ticTacToe.Winner</h1>
+        </div>
+    }
+
+    @for (int i = 0; i < ticTacToe.BoardSize; i++)
+    {
+        <div name="row" class="row">
+            @for (int j = 0; j < ticTacToe.BoardSize; j++)
+            {
+                int row = i;
+                int col = j;
+                <div name="square" class="col" @onclick="() => MarkSquare(row,col)">@ticTacToe.GetSquareSymbol(i, j)</div>
+            }
+        </div>
+    }
+</div>
+
+<div name="game-menu" class="menu-container">
+    <button class="menu-button" @onclick="() => RestartGame()">Restart</button>
+    <button class="menu-button" @onclick="() => MainMenu()">Main Menu</button>
+</div>
+
+@code {
+
+    [Parameter]
+    public GameType GameType { get; set; }
+
+    [Parameter]
+    public Difficulty Difficulty { get; set; }
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; } = default!;
+
+
+    private TicTacToeBoard ticTacToe = default!;
+    private AI ai = default!;
+
+    protected override Task OnInitializedAsync()
+    {
+        ticTacToe = new TicTacToeBoard();
+        ai = new AI(difficulty: Difficulty);
+        return base.OnInitializedAsync();
+    }
+
+    void MainMenu()
+    {
+        NavigationManager.NavigateTo($"{NavigationManager.BaseUri}tictactoe/menu/");
+    }
+
+    void MarkSquare(int row, int col)
+    {
+        if (!ticTacToe.IsGameOver)
+        {
+            ticTacToe.MarkSquare(row, col);
+            TakeNextTurn(row, col);
+        }
+    }
+
+    void TakeNextTurn(int row, int col)
+    {
+        if (ticTacToe.IsGameOver)
+            return;
+
+        switch (GameType)
+        {
+            case GameType.Normal:
+                ticTacToe.SwapTurn();
+                break;
+            case GameType.AI:
+                ticTacToe.SwapTurn();
+                var turn = ai.TakeTurn(ticTacToe);
+                ticTacToe.MarkSquare(turn.row, turn.col);
+                ticTacToe.SwapTurn();
+                break;
+            default:
+                break;
+        }
+    }
+
+    void RestartGame()
+    {
+        ticTacToe.Restart();
+    }
+}
